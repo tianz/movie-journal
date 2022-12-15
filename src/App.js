@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import MovieList from './components/MovieList';
 
 import './App.css';
 import TheMovieDatabaseApiClient from './api/TheMovieDatabaseApiClient';
 
 function App() {
-  const tmdbClient = new TheMovieDatabaseApiClient();
+  const tmdbClient = useMemo(() => new TheMovieDatabaseApiClient(), []);
   const [movies, setMovies] = useState([]);
 
   const fetchMoviesHandler = useCallback(async () => {
@@ -17,8 +17,8 @@ function App() {
         releaseDate: movie.release_date
       }
     });
-    setMovies(formattedMovies);
-  }, []);
+    setMovies(formattedMovies);;
+  }, [tmdbClient]);
 
   useEffect(() => {
     fetchMoviesHandler();
