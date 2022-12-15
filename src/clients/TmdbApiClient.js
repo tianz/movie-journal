@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export default class TheMovieDatabaseApiClient {
+export default class TmdbApiClient {
   constructor() {
     this.sessionId = process.env.REACT_APP_TMDB_SESSION_ID;
     this.client = axios.create({
@@ -16,11 +16,13 @@ export default class TheMovieDatabaseApiClient {
     }
   }
 
-  async getRatedMovies() {
+  async getRatedMovies(page) {
+    page = page || 1;
     const response = await this.client.get(`account/${process.env.REACT_APP_TMDB_ACCOUNT_ID}/rated/movies`, {
       params: {
         api_key: process.env.REACT_APP_TMDB_API_KEY,
         session_id: this.sessionId,
+        page: page
       }
     });
 

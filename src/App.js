@@ -1,16 +1,15 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import MovieList from './components/MovieList';
 
 import './App.css';
-import TheMovieDatabaseApiClient from './api/TheMovieDatabaseApiClient';
+import tmdbService from './services/TmdbService';
 
 function App() {
-  const tmdbClient = useMemo(() => new TheMovieDatabaseApiClient(), []);
   const [movies, setMovies] = useState([]);
 
   const fetchMoviesHandler = useCallback(async () => {
-    const data = await tmdbClient.getRatedMovies();
-    const formattedMovies = data.results.map(movie => {
+    const data = await tmdbService.getRatedMovies();
+    const formattedMovies = data.map(movie => {
       return {
         id: movie.id,
         title: movie.original_title,
@@ -18,7 +17,7 @@ function App() {
       }
     });
     setMovies(formattedMovies);;
-  }, [tmdbClient]);
+  }, []);
 
   useEffect(() => {
     fetchMoviesHandler();
