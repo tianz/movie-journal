@@ -1,0 +1,30 @@
+{
+  "env": {
+      "browser": true,
+      "es6": true,
+      "jest": true
+  },
+  "extends": ["plugin:react/recommended", "react-app", "react-app/jest"],
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "requireConfigFile": false,
+    "babelOptions": {
+      "babelrc": false,
+      "configFile": false,
+      "presets": ["@babel/preset-react"]
+    },
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "quotes": [
+      "warn",
+      "single"
+    ],
+    "react/prop-types": "off"
+  }
+}
