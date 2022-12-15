@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import MovieList from './components/MovieList';
 
 import './App.css';
@@ -8,7 +8,7 @@ function App() {
   const tmdbClient = new TheMovieDatabaseApiClient();
   const [movies, setMovies] = useState([]);
 
-  const fetchMoviesHandler = async () => {
+  const fetchMoviesHandler = useCallback(async () => {
     const data = await tmdbClient.getRatedMovies();
     const formattedMovies = data.results.map(movie => {
       return {
@@ -18,13 +18,14 @@ function App() {
       }
     });
     setMovies(formattedMovies);
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchMoviesHandler();
+  }, [fetchMoviesHandler]);
 
   return (
     <React.Fragment>
-      <section>
-        <button onClick={fetchMoviesHandler}>Fetch Movies</button>
-      </section>
       <section>
         <MovieList movies={movies} />
       </section>
