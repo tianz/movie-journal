@@ -1,24 +1,35 @@
-import logo from './logo.svg';
+import React, { useState, useEffect, useCallback } from 'react';
+import MovieList from './components/MovieList';
+
 import './App.css';
+import TheMovieDatabaseApiClient from './api/TheMovieDatabaseApiClient';
 
 function App() {
+  const tmdbClient = new TheMovieDatabaseApiClient();
+  const [movies, setMovies] = useState([]);
+
+  const fetchMoviesHandler = useCallback(async () => {
+    const data = await tmdbClient.getRatedMovies();
+    const formattedMovies = data.results.map(movie => {
+      return {
+        id: movie.id,
+        title: movie.original_title,
+        releaseDate: movie.release_date
+      }
+    });
+    setMovies(formattedMovies);
+  }, []);
+
+  useEffect(() => {
+    fetchMoviesHandler();
+  }, [fetchMoviesHandler]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <section>
+        <MovieList movies={movies} />
+      </section>
+    </React.Fragment>
   );
 }
 
