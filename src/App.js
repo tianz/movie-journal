@@ -1,13 +1,21 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import MovieList from './components/MovieList';
+import React from 'react';
+import { Route } from 'react-router-dom';
 
 import './App.css';
 
-import Movies from './components/Movies';
+import Movies from './pages/Movies';
+import Stats from './pages/Stats/Stats';
 
 function App() {
   return (
-    <Movies />
+    <div>
+      <Route path='/stats'>
+        <Stats />
+      </Route>
+      <Route path='/movies'>
+        <Movies />
+      </Route>
+    </div>
   );
 }
 

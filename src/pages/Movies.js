@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import MovieList from "./MovieList"
+import MovieList from '../components/MovieList';
 
 import tmdbService from '../services/TmdbService';
 
