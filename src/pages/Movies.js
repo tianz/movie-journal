@@ -12,7 +12,8 @@ const Movies = (props) => {
       return {
         id: movie.id,
         title: movie.original_title,
-        releaseDate: movie.release_date
+        releaseDate: movie.release_date,
+        posterPath: movie.poster_path,
       }
     });
     setMovies(formattedMovies);;

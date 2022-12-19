@@ -1,5 +1,5 @@
-.movies-list {
+.movies-wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
-  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 20rem));
+  justify-content: center;
 }
