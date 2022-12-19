@@ -1,0 +1,11 @@
+.movie-container {
+  overflow: hidden;
+  box-shadow: 0px 2px 8px 0px var(--clr-gray-light);
+  text-align: center;
+  position: relative;
+}
+
+.movie-container img {
+  display: bo;
+  height: 400px;
+}

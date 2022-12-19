@@ -1,0 +1,12 @@
+.h1 {
+  text-align: center;
+}
+
+.ul {
+  text-align: center;
+}
+
+.li {
+  display: inline;
+  padding: 0 10px 0 10px;
+}
